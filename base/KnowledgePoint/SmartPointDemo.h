@@ -1,0 +1,15 @@
+//
+// Created by y00455335 on 2019/12/16.
+//
+
+#ifndef ALGORITHMS_SEDGEWICK_SMARTPOINTDEMO_H
+#define ALGORITHMS_SEDGEWICK_SMARTPOINTDEMO_H
+
+
+class SmartPointDemo {
+public:
+    void Demo();
+};
+
+
+#endif //ALGORITHMS_SEDGEWICK_SMARTPOINTDEMO_H

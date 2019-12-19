@@ -11,7 +11,19 @@ public:
     void Run();
 
 private:
+    void ResetCin();
+
     void PrintMaxAndMinNum();
+
+    void PrintMedian();
+
+    void PrintkthMinNum();
+
+    void PrintSumOfSquare();
+
+    void PrintAverageNum();
+
+    void PrintPercentOfLargerThanAverage();
 };
 
 #endif //ALGORITHMS_SEDGEWICK_MATHFILTER_H

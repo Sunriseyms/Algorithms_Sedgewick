@@ -6,6 +6,7 @@
 #define ALGORITHMS_SEDGEWICK_CHAPTER1SAMPLE_H
 
 #include <vector>
+#include <stack>
 
 class Chapter1Sample {
 public:
