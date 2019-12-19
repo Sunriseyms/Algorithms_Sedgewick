@@ -16,6 +16,15 @@ public:
      * @return the full in-order expression string
      */
     std::string GetInOrderExpression(const std::string &expression);
+
+private:
+    std::string GetStringFromChar(char c);
+
+    bool IsDigit(char c);
+
+    bool IsHighPriority(const std::string &ops1, const std::string &ops2);
+
+    bool IsOps(const std::string &str);
 };
 
 
