@@ -15,7 +15,14 @@ public:
      * @param expression
      * @return the full in-order expression string
      */
-    std::string GetInOrderExpression(const std::string &expression);
+    std::string Ech10309GetInOrderExpression(const std::string &expression);
+
+    /**
+     * @brief get kth last element in input strings; use queue data struct
+     * @param k
+     * @return kth last string
+     */
+    std::string Ech10315GetkthLastElementInInput(int k);
 
 private:
     std::string GetStringFromChar(char c);

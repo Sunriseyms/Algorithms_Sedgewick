@@ -35,7 +35,9 @@ int main(int argc, char **argv) {
               " PostExpression:" << mathematicalExpression.GetPostExpression() << std::endl;
 
     Ech103 ech103;
-    std::cout << ech103.GetInOrderExpression("1+2)*3-4)*5-6)))") << std::endl;
+    std::cout << ech103.Ech10309GetInOrderExpression("1+2)*3-4)*5-6)))") << std::endl;
+
+    std::cout << "the kth last in input: " << ech103.Ech10315GetkthLastElementInInput(5) << std::endl;
 
     return 0;
 }

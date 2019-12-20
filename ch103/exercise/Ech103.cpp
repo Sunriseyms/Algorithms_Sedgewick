@@ -3,15 +3,17 @@
 //
 
 #include "Ech103.h"
+#include <iostream>
 #include <algorithm>
 #include <stack>
+#include <queue>
 
 /**
  * @brief Complete brackets for expression to complete in-orderExpression
  * @param expression
  * @return the full in-order expression string
  */
-std::string Ech103::GetInOrderExpression(const std::string &expression) {
+std::string Ech103::Ech10309GetInOrderExpression(const std::string &expression) {
     // 算法思想
     // 从头开始遍历表达式
     // 1. 如果是数字，将之压入数据栈
@@ -152,4 +154,71 @@ std::string Ech103::GetStringFromChar(char c) {
 bool Ech103::IsDigit(char c) {
     return c >= '0' && c <= '9';
 }
+
+/**
+ * @brief get kth last element in input strings; use queue data struct
+ * @param k
+ * @return kth last string
+ */
+std::string Ech103::Ech10315GetkthLastElementInInput(int k) {
+    // 获取输入字符串中的倒数第k个元素
+    std::queue<std::string> priorityQueue;
+    std::string elem;
+    int length = 0;
+    while (std::cin >> elem) {
+        length++;
+        if (length < k) {
+            priorityQueue.push(elem);
+        } else {
+            priorityQueue.pop();
+            priorityQueue.push(elem);
+        }
+    }
+    return priorityQueue.front();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
