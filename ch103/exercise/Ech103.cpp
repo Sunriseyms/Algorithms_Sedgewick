@@ -12,49 +12,136 @@
  * @return the full in-order expression string
  */
 std::string Ech103::GetInOrderExpression(const std::string &expression) {
-    //std::string tempStr = expression;
-    //std::reverse(tempStr.begin(), tempStr.end());
+    // 算法思想
+    // 从头开始遍历表达式
+    // 1. 如果是数字，将之压入数据栈
+    // 2. 如果是操作符，将之压入操作符栈
+    // 3. 如果是），则从数据栈中取出两个操作数，从数据栈中取出操作符，加上（后，安装），第二个操作数，操作符，第一个操作数，（压人数据栈。
+    // 最后数据栈中就是补全过后的中序表达式。
 
-    std::stack<std::string> expressionStack;
+    std::stack<std::string> opsStack; // 操作符栈
+    std::stack<std::string> dataStack; // 数据栈
     int i = 0;
     while (i < expression.size()) {
-        if (IsDigit(expression[i])) {
+        if (expression[i] == ')') { // 如果是'）'
+            std::stack<std::string> operand1; // 操作数1
+            std::stack<std::string> operand2; // 操作数2
+            std::string op; // 操作符
+
+            // 依次获取操作数1 操作符 操作数2
+            if (dataStack.top() != ")") { // 数字
+                // 获取操作数1
+                operand1.push(dataStack.top());
+                dataStack.pop();
+
+                // 获取操作符
+                if (opsStack.empty()) {
+                    op = dataStack.top();
+                    dataStack.pop();
+                } else {
+                    op = opsStack.top();
+                    opsStack.pop();
+                }
+
+                // 获取操作数2
+                if (dataStack.top() == ")") {
+                    operand2.push(dataStack.top());
+                    dataStack.pop();
+                    int leftBracktsCount = 0;
+                    int rightBracktsCount = 1;
+                    while (leftBracktsCount != rightBracktsCount) {
+                        if (dataStack.top() == "(") {
+                            leftBracktsCount++;
+                        } else if (dataStack.top() == ")") {
+                            rightBracktsCount++;
+                        }
+                        operand2.push(dataStack.top());
+                        dataStack.pop();
+                    }
+                } else {
+                    operand2.push(dataStack.top());
+                    dataStack.pop();
+                }
+            } else { // ")"括号
+                // 获取操作数1
+                operand1.push(dataStack.top());
+                dataStack.pop();
+                int leftBracktsCount = 0;
+                int rightBracktsCount = 1;
+                while (leftBracktsCount != rightBracktsCount) {
+                    if (dataStack.top() == "(") {
+                        leftBracktsCount++;
+                    } else if (dataStack.top() == ")") {
+                        rightBracktsCount++;
+                    }
+                    operand1.push(dataStack.top());
+                    dataStack.pop();
+                }
+
+                // 获取操作符
+                if (opsStack.empty()) {
+                    op = dataStack.top();
+                    dataStack.pop();
+                } else {
+                    op = opsStack.top();
+                    opsStack.pop();
+                }
+
+                // 获取操作数2
+                if (dataStack.top() == ")") {
+                    operand2.push(dataStack.top());
+                    dataStack.pop();
+                    int leftBracktsCount = 0;
+                    int rightBracktsCount = 1;
+                    while (leftBracktsCount != rightBracktsCount) {
+                        if (dataStack.top() == "(") {
+                            leftBracktsCount++;
+                        } else if (dataStack.top() == ")") {
+                            rightBracktsCount++;
+                        }
+                        operand2.push(dataStack.top());
+                        dataStack.pop();
+                    }
+                } else {
+                    operand2.push(dataStack.top());
+                    dataStack.pop();
+                }
+            }
+
+            // 将‘（’、操作数2、操作符、操作数1、‘）’依次压入数据栈
+            dataStack.push("(");
+            while (!operand2.empty()) {
+                dataStack.push(operand2.top());
+                operand2.pop();
+            }
+            dataStack.push(op);
+            while (!operand1.empty()) {
+                dataStack.push(operand1.top());
+                operand1.pop();
+            }
+            dataStack.push(GetStringFromChar(expression[i]));
+        } else if (IsDigit(expression[i])) { // 是数字
             std::string num;
             while (IsDigit(expression[i])) {
                 num += expression[i];
                 i++;
             }
-            //std::reverse(num.begin(), num.end());
-            expressionStack.push(num);
+            dataStack.push(num);
             continue;
-        } else {
-            expressionStack.push(GetStringFromChar(expression[i]));
+        } else { // 是操作符
+            opsStack.push(GetStringFromChar(expression[i]));
         }
         i++;
     }
-    std::stack<std::string> opsStack;
-    std::stack<std::string> dataStack;
-    int rightBracketsCountInopsStack = 0;
-    while (!expressionStack.empty()) {
-        if (expressionStack.top() == ")") {
-            opsStack.push(expressionStack.top());
-            expressionStack.pop();
-            rightBracketsCountInopsStack++;
-        } else if (IsOps(expressionStack.top())) {
-            if (opsStack.empty() || opsStack.top() == ")") {
-                opsStack.push(expressionStack.top());
-                expressionStack.pop();
-            } else {
-                std::stack<std::string> operand1;
-                std::stack<std::string> operand2;
-                while (true) {
-                    if ()
-                }
-            }
-        }
+
+    // 取出数据栈中元素，拼接到string中（即所需结果）
+    std::string result;
+    while (!dataStack.empty()) {
+        result = dataStack.top() + result;
+        dataStack.pop();
     }
 
-    return std::__cxx11::string();
+    return result;
 }
 
 std::string Ech103::GetStringFromChar(char c) {
@@ -66,10 +153,3 @@ bool Ech103::IsDigit(char c) {
     return c >= '0' && c <= '9';
 }
 
-bool Ech103::IsHighPriority(const std::string &ops1, const std::string &ops2) {
-    return true;
-}
-
-bool Ech103::IsOps(const std::string &str) {
-    return str == "+" || str == "-" || str == "*" || str == "/";
-}

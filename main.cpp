@@ -3,6 +3,7 @@
 #include "Chapter1Sample.h"
 #include "ch103/sample/CustomizeStack.h"
 #include "ch103/extra/MathematicalExpression.h"
+#include "ch103/exercise/Ech103.h"
 #include <iostream>
 
 int main(int argc, char **argv) {
@@ -32,6 +33,9 @@ int main(int argc, char **argv) {
     std::cout << "inorderStr: " << inorderStr <<
               " PreExpression:" << mathematicalExpression.GetPreExpression() <<
               " PostExpression:" << mathematicalExpression.GetPostExpression() << std::endl;
+
+    Ech103 ech103;
+    std::cout << ech103.GetInOrderExpression("1+2)*3-4)*5-6)))") << std::endl;
 
     return 0;
 }
