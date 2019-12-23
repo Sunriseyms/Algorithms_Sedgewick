@@ -28,16 +28,17 @@ int main(int argc, char **argv) {
     std::cout << "stackTest's size: " << stackTest.size() << " top: " << stackTest.top() << std::endl;
 
     // 中序表达式，前序表达式，后序表达式
-    const std::string inorderStr = "2+(1+2)*(14-3)/3-2";
-    MathematicalExpression mathematicalExpression(inorderStr);
-    std::cout << "inorderStr: " << inorderStr <<
-              " PreExpression:" << mathematicalExpression.GetPreExpression() <<
-              " PostExpression:" << mathematicalExpression.GetPostExpression() << std::endl;
+    //const std::string inorderStr = "2+(1+2)*(14-3)/3-2";
+    //MathematicalExpression mathematicalExpression(inorderStr);
+    //std::cout << "inorderStr: " << inorderStr <<
+    //          " PreExpression:" << mathematicalExpression.GetPreExpression() <<
+    //          " PostExpression:" << mathematicalExpression.GetPostExpression() << std::endl;
 
     Ech103 ech103;
     std::cout << ech103.Ech10309GetInOrderExpression("1+2)*3-4)*5-6)))") << std::endl;
 
     std::cout << "the kth last in input: " << ech103.Ech10315GetkthLastElementInInput(5) << std::endl;
 
+    ech103.Ech10337Josephus(7, 2);
     return 0;
 }

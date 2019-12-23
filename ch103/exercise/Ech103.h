@@ -23,6 +23,7 @@ public:
      * @return kth last string
      */
     std::string Ech10315GetkthLastElementInInput(int k);
+    int Ech10337Josephus(int m, int n);
 
 private:
     std::string GetStringFromChar(char c);

@@ -177,48 +177,27 @@ std::string Ech103::Ech10315GetkthLastElementInInput(int k) {
     return priorityQueue.front();
 }
 
+bool Ech103::IsOps(const std::string &str) {
+    return str == "+" || str == "-" || str == "*" || str == "/";
+}
 
+int Ech103::Ech10337Josephus(int m, int n) {
+    std::queue<int> joseQueue;
+    for (int i=0; i < m; i++) {
+        joseQueue.push(i);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    while (joseQueue.size() != 1) {
+        for(int j = 0; j < n-1; j++) {
+            int front = joseQueue.front();
+            joseQueue.pop();
+            joseQueue.push(front);
+        }
+        std::cout << joseQueue.front() << " ";
+        joseQueue.pop();
+    }
+    std::cout << std::endl;
+    std::cout << "the un"
+                 "dead position is " << joseQueue.front() << std::endl;
+    return joseQueue.front();
+}
