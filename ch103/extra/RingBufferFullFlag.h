@@ -106,37 +106,3 @@ void RingBufferFullFlag<T>::reset() {
 
 
 #endif //ALGORITHMS_SEDGEWICK_RINGBUFFERFULLFLAG_H
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,6 @@
 //
 // Created by y00455335 on 2019/12/25.
+// 镜像指示位，头尾的最大值是2倍的队列大小（通过判断头尾是否在同一镜像位置来判断为空和为满）； 当队列是2的倍数时，使用位操作，进行判断和向后+1
 //
 
 #ifndef ALGORITHMS_SEDGEWICK_RINGBUFFERMIRRORINDICATOR_H
