@@ -177,9 +177,6 @@ std::string Ech103::Ech10315GetkthLastElementInInput(int k) {
     return priorityQueue.front();
 }
 
-bool Ech103::IsOps(const std::string &str) {
-    return str == "+" || str == "-" || str == "*" || str == "/";
-}
 
 int Ech103::Ech10337Josephus(int m, int n) {
     std::queue<int> joseQueue;

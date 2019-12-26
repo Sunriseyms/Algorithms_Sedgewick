@@ -7,6 +7,7 @@
 #include "RingBufferFullFlag.h"
 #include "RingBufferWasteOneSlot.h"
 #include "RingBufferMirrorIndicator.h"
+#include "LRUCache.h"
 #include <iostream>
 
 int main(int argc, char **argv) {
@@ -41,6 +42,7 @@ int main(int argc, char **argv) {
     //std::cout << ech103.Ech10309GetInOrderExpression("1+2)*3-4)*5-6)))") << std::endl;
 
     //std::cout << "the kth last in input: " << ech103.Ech10315GetkthLastElementInInput(5) << std::endl;
+    //ech103.Ech10337Josephus(7, 2);
 
     // 循环队列：3种实现方式（判断队列为空或满）
     // 1、添加变量(是否为满),来协助判断为空和为满；  2、队列中始终保持一个空元素，进行判断是否为空（头和尾相等）和为满（头尾相邻，头在前）
@@ -71,6 +73,25 @@ int main(int argc, char **argv) {
 
     // std::cout << "get(): " << ringBufferMirrorIndicator.get() << std::endl;
 
-    ech103.Ech10337Josephus(7, 2);
+    // 简单链表实现的前缀编码
+    Ech10340LRU<int> ech10340Lru;
+    ech10340Lru.insert(1);
+    std::cout << ech10340Lru.get() << std::endl;
+    ech10340Lru.insert(2);
+    std::cout << ech10340Lru.get() << std::endl;
+    ech10340Lru.insert(3);
+    std::cout << ech10340Lru.get() << std::endl;
+    ech10340Lru.insert(2);
+    std::cout << ech10340Lru.get() << std::endl;
+
+    // map+双向链表实现的完整LRUCache
+    LRUCache<int> lruCache(4);
+    lruCache.put(1, 1);
+    lruCache.put(2, 2);
+    lruCache.put(3, 3);
+    lruCache.put(4, 4);
+    lruCache.put(5, 5);
+    std::cout << lruCache.get(5) << std::endl;
+
     return 0;
 }
