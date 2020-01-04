@@ -32,7 +32,7 @@ private:
     bool IsDigit(char c);
 };
 
-//
+// 前缀编码
 template<class T>
 class Ech10340LRU {
     struct List {
