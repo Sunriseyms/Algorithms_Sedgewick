@@ -8,7 +8,11 @@
 #include "RingBufferWasteOneSlot.h"
 #include "RingBufferMirrorIndicator.h"
 #include "LRUCache.h"
+#include "SortContinar.h"
 #include <iostream>
+#include <algorithm>
+
+using  namespace std;
 
 int main(int argc, char **argv) {
     // 第一章的一些例子
@@ -74,24 +78,40 @@ int main(int argc, char **argv) {
     // std::cout << "get(): " << ringBufferMirrorIndicator.get() << std::endl;
 
     // 简单链表实现的前缀编码
-    Ech10340LRU<int> ech10340Lru;
-    ech10340Lru.insert(1);
-    std::cout << ech10340Lru.get() << std::endl;
-    ech10340Lru.insert(2);
-    std::cout << ech10340Lru.get() << std::endl;
-    ech10340Lru.insert(3);
-    std::cout << ech10340Lru.get() << std::endl;
-    ech10340Lru.insert(2);
-    std::cout << ech10340Lru.get() << std::endl;
+    //Ech10340LRU<int> ech10340Lru;
+    //ech10340Lru.insert(1);
+    //std::cout << ech10340Lru.get() << std::endl;
+    //ech10340Lru.insert(2);
+    //std::cout << ech10340Lru.get() << std::endl;
+    //ech10340Lru.insert(3);
+    //std::cout << ech10340Lru.get() << std::endl;
+    //ech10340Lru.insert(2);
+    //std::cout << ech10340Lru.get() << std::endl;
 
-    // map+双向链表实现的完整LRUCache
-    LRUCache<int> lruCache(4);
-    lruCache.put(1, 1);
-    lruCache.put(2, 2);
-    lruCache.put(3, 3);
-    lruCache.put(4, 4);
-    lruCache.put(5, 5);
-    std::cout << lruCache.get(5) << std::endl;
+    //// map+双向链表实现的完整LRUCache
+    //LRUCache<int> lruCache(4);
+    //lruCache.put(1, 1);
+    //lruCache.put(2, 2);
+    //lruCache.put(3, 3);
+    //lruCache.put(4, 4);
+    //lruCache.put(5, 5);
+    //std::cout << lruCache.get(5) << std::endl;
 
+    std::vector<int> input{1,4,5,3,8,2,7,9,6,0};
+    cout << "input: ";
+    for_each(input.begin(), input.end(), [](int val) {cout << val << " ";});
+    cout << endl;
+    std::vector<int> chooseSortInput = SortContinar<int>::ChooseSort(input);
+    cout << "after choose sort: ";
+    for_each(chooseSortInput.begin(), chooseSortInput.end(), [](int val) {cout << val << " ";});
+    cout << endl;
+    std::vector<int> insertSortInput = SortContinar<int>::InsertSort(input);
+    cout << "after insert sort: ";
+    for_each(insertSortInput.begin(), insertSortInput.end(), [](int val) {cout << val << " ";});
+    cout << endl;
+    std::vector<int> shellSortInput = SortContinar<int>::ShellSort(input);
+    cout << "after shell sort: ";
+    for_each(shellSortInput.begin(), shellSortInput.end(), [](int val) {cout << val << " ";});
+    cout << endl;
     return 0;
 }
