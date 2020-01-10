@@ -14,19 +14,34 @@ template <class T>
 class SortContinar {
 public:
     static vector<T> ChooseSort(vector<T> list);
+
     static vector<T> InsertSort(vector<T> list);
+
     static vector<T> ShellSort(vector<T> list);
+
+    static vector<T> MergeSort(vector<T> list);
+
+    static vector<T> MergeBuSort(vector<T> list);
+
+private:
+    static vector<T> auxiliaryVec;
+
+    static void Merge(vector<T> &list, int lowPostion, int midPostion, int highPostion);
+
+    static void MergeSort(vector<T> &list, int lo, int hi);
 };
+
+template<class T> vector<T> SortContinar<T>::auxiliaryVec;
 
 // 选择排序
 template<class T>
 vector<T> SortContinar<T>::ChooseSort(vector<T> list) {
     vector<T> result(list);
-    for(int i = 0; i < result.size(); ++i) {
+    for (int i = 0; i < result.size(); ++i) {
         int min = i;
-        for (int j = i+1; j < result.size(); ++j) {
+        for (int j = i + 1; j < result.size(); ++j) {
             // 找到最小的元素下标
-            if (less<T>()(result[j], result[min])){
+            if (less<T>()(result[j], result[min])) {
                 min = j;
             }
         }
@@ -76,7 +91,90 @@ vector<T> SortContinar<T>::ShellSort(vector<T> list) {
                 }
             }
         }
-        h = h/3;
+        h = h / 3;
+    }
+    return result;
+}
+
+/**
+ * 归并排序： 合并操作
+ * @tparam T
+ * @param list
+ * @param lowPostion
+ * @param midPostion
+ * @param highPostion
+ */
+template<class T>
+void SortContinar<T>::Merge(vector<T> &list, int lowPostion, int midPostion, int highPostion) {
+    int i = lowPostion, j = midPostion + 1;
+    for (int k = lowPostion; k <= highPostion; k++) {
+        auxiliaryVec[k] = list[k];
+    }
+
+    for (int k = lowPostion; k <= highPostion; k++) {
+        if (i > midPostion) { // 当左边元素已都排序到原容器中，直接将右半边部分剩余的元素添加到原容器中。
+            list[k] = auxiliaryVec[j++];
+        } else if (j > highPostion) { // 当右边元素已都排序到原容器中，直接将左半边部分剩余的元素添加到原容器中。
+            list[k] = auxiliaryVec[i++];
+        } else if (less<T>()(auxiliaryVec[j], auxiliaryVec[i])) { // 将小的元素更新到原容器中。
+            list[k] = auxiliaryVec[j++];
+        } else {
+            list[k] = auxiliaryVec[i++];
+        }
+    }
+}
+
+/**
+ * 归并排序： 归并排序，递归函数
+ * @tparam T
+ * @param list
+ * @param lo
+ * @param hi
+ */
+template<class T>
+void SortContinar<T>::MergeSort(vector<T> &list, int lo, int hi) {
+    if (hi <= lo) {
+        return;
+    }
+    int mid = lo + (hi - lo) / 2;
+    MergeSort(list, lo, mid);
+    MergeSort(list, mid + 1, hi);
+    Merge(list, lo, mid, hi);
+}
+
+/**
+ *  归并排序： 递归归并(自顶向下归并排序)
+ * @tparam T
+ * @param list
+ * @return
+ */
+template<class T>
+vector<T> SortContinar<T>::MergeSort(vector<T> list) {
+    vector<T> result(list);
+    auxiliaryVec.clear();
+    auxiliaryVec.insert(auxiliaryVec.end(), list.begin(), list.end());
+    MergeSort(result, 0, result.size() - 1);
+    return result;
+}
+
+/**
+ * 归并排序： 非递归排序（自底向上归并排序）
+ * @tparam T
+ * @param list
+ * @return
+ */
+template<class T>
+vector<T> SortContinar<T>::MergeBuSort(vector<T> list) {
+    auxiliaryVec.clear();
+    auxiliaryVec.insert(auxiliaryVec.end(), list.begin(), list.end());
+    vector<T> result(list);
+
+    // 1 2 4 8的顺序进行归并
+    for (int i = 1; i <= auxiliaryVec.size(); i = i + i) {
+        for (int lo = 0; lo < auxiliaryVec.size(); lo = lo + i + i) {
+            int high = (lo + i + i - 1) > (auxiliaryVec.size() - 1) ? (auxiliaryVec.size() - 1) : (lo + i + i - 1);
+            Merge(result, lo, lo + i - 1, high);
+        }
     }
     return result;
 }

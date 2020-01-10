@@ -99,19 +99,29 @@ int main(int argc, char **argv) {
 
     std::vector<int> input{1,4,5,3,8,2,7,9,6,0};
     cout << "input: ";
-    for_each(input.begin(), input.end(), [](int val) {cout << val << " ";});
+    for_each(input.begin(), input.end(), [](int val) { cout << val << " "; });
     cout << endl;
     std::vector<int> chooseSortInput = SortContinar<int>::ChooseSort(input);
     cout << "after choose sort: ";
-    for_each(chooseSortInput.begin(), chooseSortInput.end(), [](int val) {cout << val << " ";});
+    for_each(chooseSortInput.begin(), chooseSortInput.end(), [](int val) { cout << val << " "; });
     cout << endl;
     std::vector<int> insertSortInput = SortContinar<int>::InsertSort(input);
     cout << "after insert sort: ";
-    for_each(insertSortInput.begin(), insertSortInput.end(), [](int val) {cout << val << " ";});
+    for_each(insertSortInput.begin(), insertSortInput.end(), [](int val) { cout << val << " "; });
     cout << endl;
     std::vector<int> shellSortInput = SortContinar<int>::ShellSort(input);
     cout << "after shell sort: ";
-    for_each(shellSortInput.begin(), shellSortInput.end(), [](int val) {cout << val << " ";});
+    for_each(shellSortInput.begin(), shellSortInput.end(), [](int val) { cout << val << " "; });
     cout << endl;
+    std::vector<int> mergeSortInput = SortContinar<int>::MergeSort(input);
+    cout << "after merge sort: ";
+    for_each(mergeSortInput.begin(), mergeSortInput.end(), [](int val) { cout << val << " "; });
+    cout << endl;
+
+    std::vector<int> mergeBuSortInput = SortContinar<int>::MergeBuSort(input);
+    cout << "after merge bu sort（非递归）: ";
+    for_each(mergeBuSortInput.begin(), mergeBuSortInput.end(), [](int val) { cout << val << " "; });
+    cout << endl;
+
     return 0;
 }
