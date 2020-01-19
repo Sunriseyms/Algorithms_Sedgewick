@@ -23,12 +23,18 @@ public:
 
     static vector<T> MergeBuSort(vector<T> list);
 
+    static vector<T> QuickSort(vector<T> list);
+
 private:
     static vector<T> auxiliaryVec;
 
     static void Merge(vector<T> &list, int lowPostion, int midPostion, int highPostion);
 
     static void MergeSort(vector<T> &list, int lo, int hi);
+
+    static void QuickSort(vector<T> &list, int lo, int hi);
+
+    static int Partition(vector<T> &list, int lo, int hi);
 };
 
 template<class T> vector<T> SortContinar<T>::auxiliaryVec;
@@ -177,6 +183,65 @@ vector<T> SortContinar<T>::MergeBuSort(vector<T> list) {
         }
     }
     return result;
+}
+
+/**
+ * 快速排序，递归实现，先分割成两部分，分别对两部份进行排序。
+ * @tparam T
+ * @param list
+ * @param lo
+ * @param hi
+ */
+template<class T>
+void SortContinar<T>::QuickSort(vector<T> &list, int lo, int hi) {
+    if (hi <= lo) return;
+    int j = Partition(list, lo, hi);
+    QuickSort(list, lo, j - 1);
+    QuickSort(list, j + 1, hi);
+
+}
+
+/**
+ * 快速排序
+ * @tparam T
+ * @param list
+ * @return
+ */
+template<class T>
+vector<T> SortContinar<T>::QuickSort(vector<T> list) {
+    vector<T> result(list);
+    QuickSort(result, 0, result.size() - 1);
+    return result;
+}
+
+
+template<class T>
+int SortContinar<T>::Partition(vector<T> &list, int lo, int hi) {
+    int i = lo;
+    int j = hi + 1;
+    T v = list[lo];
+
+    while (true) {
+        while (less<T>()(list[++i], v)) {
+            if (i == hi) {
+                break;
+            }
+        }
+
+        while (less<T>()(v, list[--j])) {
+            if (j == lo) {
+                break;
+            }
+        }
+
+        if (i >= j) {
+            break;
+        }
+        swap(list[i], list[j]);
+    }
+
+    swap(list[lo], list[j]);
+    return j;
 }
 
 
