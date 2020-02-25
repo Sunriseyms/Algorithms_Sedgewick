@@ -10,6 +10,7 @@ include_directories(ch103/exercise)
 include_directories(ch103/extra)
 include_directories(ch201)
 include_directories(ch201/sample)
+include_directories(ch302/sample)
 
 add_executable(Algorithms_Sedgewick
         main.cpp
@@ -22,6 +23,7 @@ add_executable(Algorithms_Sedgewick
         base/KnowledgePoint/SmartPointDemo.cpp
         base/KnowledgePoint/SmartPointDemo.h
         ch103/extra/MathematicalExpression.cpp
+        ch302/sample/BinarySearchTree.cpp
         ch103/extra/MathematicalExpression.h
         ch103/exercise/Ech103.cpp
         ch103/exercise/Ech103.h
